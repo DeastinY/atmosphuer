@@ -15,6 +15,7 @@ def appendCreatedSample(hue, saturation, brightness, name):
         "audio": name+".mp3",
     }
     f.write(json.dumps(json_scene))
+    f.write(",\n")
     f.close()
 
 def write_sample(content, filename):
