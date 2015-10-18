@@ -5,9 +5,8 @@ except NameError: pass
 def print_options(scenes):
     print("Here are the available options:")
     print("end\tEnd Programm")
-    print type(scenes)
-    for i in range(1,len(scenes)):
-        print(str(i)+"\t"+scenes[i])
+    for i in range(len(scenes)):
+        print(str(i)+"\t"+scenes[i]["name"])
 
 
 def load_or_sample(name,loadFunc,writeFunc):

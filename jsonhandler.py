@@ -28,13 +28,13 @@ def write_sample_settings(SaveAsOriginal):
 
 def write_sample_scenes(SaveAsOriginal):
     #{"name": "rain", "brightness": "254", "hue": "15000", "saturation": "120", "audio": "rain.mp3" }
-    json_scenes = {
+    json_scenes = [{
         "name": "rain",
         "brightness": "254",
         "hue": "15000",
         "saturation": "120",
         "audio": "rain.mp3",
-    }
+    }]
 
     fscenes = "scenes_sample.json"
     if SaveAsOriginal:
