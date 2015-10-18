@@ -28,6 +28,7 @@ def write_sample_settings(SaveAsOriginal):
     json_settings = {
         "bridge_ip": "192.168.0.10",
         "shadowrun_lights": "Arbeitszimmer",
+        "scenes_file": "scenes.json"
     }
 
 
@@ -58,12 +59,12 @@ def write_sample_scenes(SaveAsOriginal):
     print ("Sample Scenes written")
 
 
-def load_settings():
+def load_settings(settings_file):
     settings = os.path.join(os.getcwd(),"settings.json")
     return load(settings)
 
-def load_scenes():
-    scenes = os.path.join(os.getcwd(),"scenes.json")
+def load_scenes(scenes_file):
+    scenes = os.path.join(os.getcwd(),scenes_file)
     return load(scenes)
 
 def load(filename):

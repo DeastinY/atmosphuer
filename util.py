@@ -9,13 +9,13 @@ def print_options(scenes):
         print(str(i)+"\t"+scenes[i]["name"])
 
 
-def load_or_sample(name,loadFunc,writeFunc):
-    loaded = loadFunc()
+def load_or_sample(name,file,loadFunc,writeFunc):
+    loaded = loadFunc(file)
     if loaded == None:
         result = input("No "+name+" file has been found, do you want to create a sample ? [y/n] \n")
         if result == "y":
             writeFunc(True)
-        loaded = loadFunc()
+        loaded = loadFunc(file)
         if loaded == None:
             sys.exit()
     return loaded
