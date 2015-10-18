@@ -1,6 +1,6 @@
 import phue
 import jsonhandler
-import utilities
+import util
 import logging
 import sys
 
@@ -12,13 +12,15 @@ except NameError: pass
 logging.basicConfig()
 
 # load settings
-settings = jsonhandler.load_settings()
-if settings == None:
-    if "y" == input("No settings file has been found, do you want to create a sample ? [y/n]\n"):
-        jsonhandler.write_sample_json_file(True)
-    settings = jsonhandler.load_settings()
-    if settings == None:
-        sys.exit()
+
+settings = util.load_or_sample("settings", jsonhandler.load_settings, jsonhandler.write_sample_settings)
+#settings = jsonhandler.load_settings()
+#if settings == None:
+#if "y" == input("No settings file has been found, do you want to create a sample ? [y/n]\n"):
+    #,jsonhandler.write_sample_settings(True)
+#settings = jsonhandler.load_settings()
+#if settings == None:
+#    sys.exit()
 
 # (later from JSON)
 b = phue.Bridge(settings["bridge_ip"])
@@ -41,12 +43,21 @@ for light in sr:
     light.on = True
     light.brightness = 254
 
+# Load Scenes
+scenes = jsonhandler.load_scenes()
+if scenes == None:
+    if "y" == input("No scenes file has been found, do you want to create a sample ? [y/n]\n"):
+        jsonhandler.write_sample_scenes(True)
+    scenes = jsonhandler.load_scenes()
+    if scenes == None:
+        sys.exit()
+
 
 
 # Ask user for input until he closes the program
 i = ""
 while i != "end":
-    utilities.print_options()
+    util.print_options()
     i = input("Enter command:")
 
 # Deactivate lamp
