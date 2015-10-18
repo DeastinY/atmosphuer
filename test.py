@@ -2,24 +2,34 @@
 
 from phue import Bridge
 import logging
+import json
 
 #set up a basic config for the logger
 logging.basicConfig()
 
 b = Bridge('192.168.0.10')
-lamp = {}
 
 # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
 b.connect()
 print("bridge connected")
 
-# Get the names to all the lamps
+# Get all the lights
 print("found lamps:")
-for i in range (3):
-    name = b.get_light(i+1,'name')
-    lamp[name] = i
+lights = b.get_light_objects('name')
+for light in lights:
+    print ("\t"+light)
 
-print("\t"+str(lamp))
+# Set up relevant SR lights (later from JSON)
+sr = [lights["Arbeitszimmer"]]#,lights[]"Esszimmer"]]
+
+# Activate lamp
+for light in sr:
+    light.on = True
+    light.brightness = 254
+
+# Deactivate lamp
+for light in sr:
+    light.on = False
 
 # Get the bridge state (This returns the full dictionary that you can explore) (b.get_api())
 
