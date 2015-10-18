@@ -1,8 +1,8 @@
 import json
 import os
 
-def write_sample_json_file():
-    print("writing json samples")
+def write_sample_json_file(SaveAsOriginal):
+    print("Writing Samples")
     #{"name": "rain", "brightness": "254", "hue": "15000", "saturation": "120", "audio": "rain.mp3" }
     json_scenes = {
         "name": "rain",
@@ -19,15 +19,21 @@ def write_sample_json_file():
     }
 
     #write to file
-    f = open("scenes.json","w")
+    fscenes = "scenes_sample.json"
+    fsettings = "settings_sample.json"
+    if SaveAsOriginal:
+        fscenes = "scenes.json"
+        fsettings = "settings.json"
+
+    f = open(fscenes,"w")
     f.write(json.dumps(json_scenes))
     f.close()
 
-    f = open("settings.json","w")
+    f = open(fsettings,"w")
     f.write(json.dumps(json_settings))
     f.close()
 
-    print("files written")
+    print("Files written")
 
 def load_settings():
     settings = os.getcwd()+"/settings.json"

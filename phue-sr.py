@@ -10,18 +10,21 @@ logging.basicConfig()
 # load settings
 settings = jsonhandler.load_settings()
 if settings == None:
-    sys.exit()
-print (settings)
+    if "y" == raw_input("No settings file has been found, do you want to create a sample ? [y/n]\n"):
+        jsonhandler.write_sample_json_file(True)
+    settings = jsonhandler.load_settings()
+    if settings == None:
+        sys.exit()
 
 # (later from JSON)
 b = phue.Bridge(settings["bridge_ip"])
 
 # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
 b.connect()
-print("bridge connected")
+print("Bridge connected")
 
 # Get all the lights
-print("found lamps:")
+print("Found lamps:")
 lights = b.get_light_objects('name')
 for light in lights:
     print ("\t"+light)
@@ -40,8 +43,6 @@ input = ""
 while input != "end":
     utilities.print_options()
     input = raw_input("Enter command:")
-    if input == "cs":
-        jsonhandler.write_sample_json_file()
 
 # Deactivate lamp
 for light in sr:
