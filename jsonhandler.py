@@ -5,6 +5,18 @@ import os
 try: input = raw_input
 except NameError: pass
 
+def appendCreatedSample(hue, saturation, brightness, name):
+    f = open ("createdSamples.json", "a")
+    json_scene = {
+        "name": name,
+        "brightness": brightness,
+        "hue": hue,
+        "saturation": saturation,
+        "audio": name+".mp3",
+    }
+    f.write(json.dumps(json_scene))
+    f.close()
+
 def write_sample(content, filename):
     f = open (filename, "w")
     f.write(json.dumps(content))

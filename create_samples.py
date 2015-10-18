@@ -39,29 +39,16 @@ sr = [lights[settings["shadowrun_lights"]]]
 for light in sr:
     light.on = True
 
-# Load Scenes
-scenes = util.load_or_sample("scenes",jsonhandler.load_scenes, jsonhandler.write_sample_scenes)
-
 # Ask user for input until he closes the program
 i = ""
 while i != "end":
-    util.print_options(scenes)
-    i = input("Enter command:\t")
-    # activate chosen setting
-    try:
-        ii = int(i)
-        if ii > len(scenes)-1 or ii < 0:
-            print ("invalid input")
-        else:
-            scene = scenes[ii]
-            print ("Setting "+scene['name'])
-            for light in sr:
-                light.on = True
-                light.brightness = int(scene['brightness'])
-                light.saturation = int(scene['saturation'])
-                light.hue = int(scene['hue'])
-    except ValueError:
-        pass
+    i = input("Enter Name for Scene:\t")
+    # Take value from first light
+    h = sr[0].hue
+    s = sr[0].saturation
+    b = sr[0].brightness
+    jsonhandler.appendCreatedSample(h,s,b,i)
+
 
 # Deactivate lamp
 for light in sr:
