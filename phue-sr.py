@@ -41,7 +41,7 @@ scenes = util.load_or_sample("scenes",jsonhandler.load_scenes, jsonhandler.write
 # Ask user for input until he closes the program
 i = ""
 while i != "end":
-    util.print_options()
+    util.print_options(scenes)
     i = input("Enter command:")
 
 # Deactivate lamp

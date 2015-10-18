@@ -2,7 +2,8 @@
 try: input = raw_input
 except NameError: pass
 
-def print_options():
+def print_options(scenes):
+    print (scenes)
     print("Here are the available options:")
     print("end\tEnd Programm")
     pass
