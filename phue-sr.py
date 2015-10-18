@@ -42,7 +42,7 @@ scenes = util.load_or_sample("scenes",jsonhandler.load_scenes, jsonhandler.write
 i = ""
 while i != "end":
     util.print_options(scenes)
-    i = input("Enter command:")
+    i = input("Enter command:\t")
 
 # Deactivate lamp
 for light in sr:
