@@ -36,11 +36,11 @@ def write_sample_json_file(SaveAsOriginal):
     print("Files written")
 
 def load_settings():
-    settings = os.getcwd()+"/settings.json"
+    settings = os.path.join(os.getcwd(),"settings.json")
     return load(settings)
 
 def load_scenes():
-    scenes = os.getcwd()+"/scenes.json"
+    settings = os.path.join(os.getcwd(),"scenes.json")
     return load(scenes)
 
 def load(filename):
