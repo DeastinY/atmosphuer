@@ -56,12 +56,18 @@ while i != "end":
             scene = scenes[ii]
             print ("Setting "+scene['name'])
             for light in sr:
+                light.effect = "None"
                 light.on = True
                 light.brightness = int(scene['brightness'])
                 light.saturation = int(scene['saturation'])
                 light.hue = int(scene['hue'])
     except ValueError:
         pass
+
+    # easteregg
+    if i == "olf":
+        util.easteregg(sr)
+
 
 # Deactivate lamp
 for light in sr:

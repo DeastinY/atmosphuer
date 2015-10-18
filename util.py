@@ -1,3 +1,6 @@
+import time
+import random
+
 # Fix Python 2.x.
 try: input = raw_input
 except NameError: pass
@@ -19,3 +22,15 @@ def load_or_sample(name,file,loadFunc,writeFunc):
         if loaded == None:
             sys.exit()
     return loaded
+
+def easteregg(sr):
+    for light in sr:
+        light.on = True
+        light.brightness = 254
+        light.saturation = 254
+    # 1 Minute
+    for i in range (210):
+        for light in sr:
+            # Adjust to 210 bpm of song
+            time.sleep(.285)
+            light.hue = random.randint(0,65535)
