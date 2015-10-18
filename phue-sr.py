@@ -12,15 +12,7 @@ except NameError: pass
 logging.basicConfig()
 
 # load settings
-
 settings = util.load_or_sample("settings", jsonhandler.load_settings, jsonhandler.write_sample_settings)
-#settings = jsonhandler.load_settings()
-#if settings == None:
-#if "y" == input("No settings file has been found, do you want to create a sample ? [y/n]\n"):
-    #,jsonhandler.write_sample_settings(True)
-#settings = jsonhandler.load_settings()
-#if settings == None:
-#    sys.exit()
 
 # (later from JSON)
 b = phue.Bridge(settings["bridge_ip"])
@@ -44,15 +36,7 @@ for light in sr:
     light.brightness = 254
 
 # Load Scenes
-scenes = jsonhandler.load_scenes()
-if scenes == None:
-    if "y" == input("No scenes file has been found, do you want to create a sample ? [y/n]\n"):
-        jsonhandler.write_sample_scenes(True)
-    scenes = jsonhandler.load_scenes()
-    if scenes == None:
-        sys.exit()
-
-
+scenes = util.load_or_sample("scenes",jsonhandler.load_scenes, jsonhandler.write_sample_scenes)
 
 # Ask user for input until he closes the program
 i = ""

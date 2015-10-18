@@ -11,7 +11,6 @@ def load_or_sample(name,loadFunc,writeFunc):
     loaded = loadFunc()
     if loaded == None:
         result = input("No "+name+" file has been found, do you want to create a sample ? [y/n] \n")
-        print (result)
         if result == "y":
             writeFunc(True)
         loaded = loadFunc()
