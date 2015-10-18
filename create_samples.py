@@ -35,21 +35,14 @@ lights = b.get_light_objects('name')
 # Set up relevant SR lights (later from JSON)
 sr = [lights[settings["shadowrun_lights"]]]
 
-# Activate lamp
-for light in sr:
-    light.on = True
-
 # Ask user for input until he closes the program
-i = ""
-while i != "end":
+while True:
+    print ("Enter end to exit")
     i = input("Enter Name for Scene:\t")
+    if i == "end":
+        sys.exit()
     # Take value from first light
     h = sr[0].hue
     s = sr[0].saturation
     b = sr[0].brightness
     jsonhandler.appendCreatedSample(h,s,b,i)
-
-
-# Deactivate lamp
-for light in sr:
-    light.on = False
