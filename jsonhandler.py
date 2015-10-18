@@ -1,3 +1,6 @@
+import json
+import os
+
 def write_sample_json_file():
     print("writing json samples")
     #{"name": "rain", "brightness": "254", "hue": "15000", "saturation": "120", "audio": "rain.mp3" }
@@ -25,3 +28,22 @@ def write_sample_json_file():
     f.close()
 
     print("files written")
+
+def load_settings():
+    settings = os.getcwd()+"/settings.json"
+    return load(settings)
+
+def load_scenes():
+    scenes = os.getcwd()+"/scenes.json"
+    return load(scenes)
+
+def load(filename):
+    if os.path.exists(filename):
+        print("Loading "+filename)
+        file = open(filename,"r")
+        content = file.read()
+        file.close()
+        return json.loads(content)
+    else:
+        print ("Could not find file "+filename)
+        print ("Exiting")

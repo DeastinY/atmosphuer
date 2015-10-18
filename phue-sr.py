@@ -2,12 +2,19 @@ import phue
 import jsonhandler
 import utilities
 import logging
+import sys
 
-#set up a basic config for the logger
+# set up a basic config for the logger
 logging.basicConfig()
 
+# load settings
+settings = jsonhandler.load_settings()
+if settings == None:
+    sys.exit()
+print (settings)
+
 # (later from JSON)
-b = phue.Bridge('192.168.0.10')
+b = phue.Bridge(settings["bridge_ip"])
 
 # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
 b.connect()
@@ -20,7 +27,7 @@ for light in lights:
     print ("\t"+light)
 
     # Set up relevant SR lights (later from JSON)
-    sr = [lights["Arbeitszimmer"]]#,lights[]"Esszimmer"]]
+    sr = [lights[settings["shadowrun_lights"]]]
 
     # Activate lamp
     for light in sr:
