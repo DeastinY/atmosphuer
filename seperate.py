@@ -1,4 +1,6 @@
-import os, codecs
+import os, codecs, youtube_dl
+from multiprocessing import Pool
+from multiprocessing.dummy import Pool as ThreadPool
 
 class Song():
     def __init__(self, link="", name="", category=""):
@@ -19,13 +21,33 @@ def getlink(c):
     split = c.split(" ")
     for s in split:
         if haslink(s):
-            return s
+            return s.strip()
 
 def getname(c):
     if ':' in c:
-        return c.split(':')[0]
+        return c.split(':')[0].strip()
     else:
-        return c
+        return c.strip()
+
+def load(s):
+    ydl_opts={
+        'format': 'bestaudio/best',
+        'postprocessors':[{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        #'quiet': True,
+        'restrictfilenames' : True
+    }
+    print("Loading "+str(s))
+    ydl_opts['outtmpl'] = s.category+' - '+s.name+'.%(ext)s'
+    print (ydl_opts)
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        try:
+            ydl.download([s.link])
+        except:
+            pass
 
 with codecs.open(os.path.join(os.getcwd(), "m.txt"),'r',encoding='utf-8', errors='ignore')  as f:
   content = f.readlines()
@@ -40,9 +62,13 @@ for c in content:
     else:
         if len(c) > 1: # ignore linkebreaks
             if ':' in c:
-                category = c.split(":")[0]
+                category = c.split(":")[0].strip()
             else:
-                category = c
+                category = c.strip()
 
-for s in songs:
-    print(s)
+pool = ThreadPool(4)
+
+results = pool.map(load,songs)
+
+pool.close()
+pool.join()
