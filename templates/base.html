@@ -1,0 +1,53 @@
+<html>
+    <head>
+        {% block head %}
+
+        <title>{% block title %}Visualization FLASK{% endblock title %}</title>
+
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css' )}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap-switch.css' )}}"/>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/font-awesome.min.css' )}}"/>
+
+        <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js' )}}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.js' )}}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap-switch.js' )}}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap-list-filter.min.js' )}}"></script>
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        {% block scripts %}{% endblock %}
+        {% endblock head %}
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <a class="navbar-brand" href="">Phue-SR</a>
+            <ul class="nav navbar-nav">
+                {% for item in nav.top %}
+            {% if item.items|length == 0 %}
+                        <li class="{{ 'active' if item.is_active else '' }}">
+                            <a href="{{ item.url }}">{{ item.label }}</a>
+                        </li>
+                    {% else %}
+                        <li class={{ 'active dropdown' if item.is_active else 'dropdown'}}>
+                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ item.label }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                {% for child in item.items %}
+                                    <li>
+                                        <a href="{{ child.url }}">{{ child.label}}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+
+        {% block content %}
+        {% endblock  content%}
+    </body>
+</html>
