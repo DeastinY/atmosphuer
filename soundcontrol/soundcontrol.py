@@ -1,6 +1,7 @@
 import os
 import logging
 import subprocess
+import youtube_dl
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +27,20 @@ Downloads a video from youtube
 
 
 def youtubedl(url, name):
-    command = "youtube-dl --extract-audio --audio-format mp3 --output " +os.path.join(path,name[0]+'.mp3')+" --force-ipv4 "+url[0]
-    try:
-        subprocess.call(command.split())
-    except Exception as e:
-        logger.exception(e)
+    logger.info("Downloading"+url[0])
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors':[{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'quiet': True,
+        'restrictfilenames' : True,
+        'outtmpl': os.path.join(path,name[0]) + '.(ext)s'
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        try:
+            ydl.download([url[0]])
+        except:
+            logger.exception(e)
