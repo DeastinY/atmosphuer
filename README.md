@@ -2,7 +2,7 @@
 A small and lightweight [Flask](http://flask.pocoo.org/) based **Python3** application that shows scenes from [Philips Hue](http://www2.meethue.com/en-us) and streams music.  
 *Run it on a raspberry pi for easy and fast access !*
 
-![Atmosphuer in Action](https://screenshots.firefoxusercontent.com/images/d7cc2517-0385-48c6-bb6f-78599900bf2f.png)
+![Atmosphuer in Action](https://screenshots.firefoxusercontent.com/images/881e9cff-6f8e-4c82-ad3b-5ef7c972ba75.png)
 
 #### Why ?
 Mainly to set the atmosphere for our pen and paper group.  
