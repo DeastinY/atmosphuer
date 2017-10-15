@@ -1,5 +1,3 @@
-Flask==0.12.2
 phue==1.0
-pyglet==1.3.0rc1
-youtube_dl==2017.10.15.1
-Flask-Navigation
+Flask==0.12.2
+Flask_Navigation==0.2.0
