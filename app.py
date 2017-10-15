@@ -20,16 +20,16 @@ def index():
 def togglelight():
     logging.debug("/togglelight")
     response = request.get_json()
-    BRIDGE.set_light(int(response['id']), 'on', response['on'], CONFIG['transition'])
+    bridge.bridge.set_light(int(response['id']), 'on', response['on'], CONFIG['transition'])
     return jsonify(success=True)
 
 
 @app.route('/applyscene', methods=["POST"])
 def applyscene():
     logging.debug("/applyscene")
-    for s in BRIDGE.scenes:
+    for s in bridge.bridge.scenes:
         if s.name == request.get_json()['name']:
-            BRIDGE.activate_scene(0, s.scene_id)  # use group_id 0 to activate all lights of the scene
+            bridge.bridge.activate_scene(0, s.scene_id)  # use group_id 0 to activate all lights of the scene
     return jsonify(success=True)
 
 if __name__ == '__main__':
