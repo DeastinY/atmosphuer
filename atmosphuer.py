@@ -26,7 +26,7 @@ else:
             "MC96Eqy6UVKBIfUq6exDZBBf9orGbqzU39lvB1DU",
             "4OL6W0jrLzLUubiK0u-xA779Up89-SevTCBgbPOd"
         ],
-        "sound_dir": "/home/ric/projects/shadowrun/phue-sr/static/sounds",
+        "sound_dir": "/home/ric/projects/shadowrun/atmosphuer/static/sounds",
         "transition": 1000
     }
     CONFIG_FILE.write_text(json.dumps(CONFIG, indent=2))
