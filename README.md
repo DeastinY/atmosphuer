@@ -1,5 +1,5 @@
 # Phue-SR
-A small and lightweight [Flask](http://flask.pocoo.org/) based **Python3** application that shows scenes from [Philips Hue](http://www2.meethue.com/en-us) and streams music. 
+A small and lightweight [Flask](http://flask.pocoo.org/) based **Python3** application that shows scenes from [Philips Hue](http://www2.meethue.com/en-us) and streams music.  
 *Run it on a raspberry pi for easy and fast access !*
 
 ![Phue-SR in Action](https://screenshots.firefoxusercontent.com/images/d7cc2517-0385-48c6-bb6f-78599900bf2f.png)
@@ -24,5 +24,5 @@ On the first run a config file `settings.json` will be created. Use it to config
 - **transition**: The transition time for scene changes
 
 ### What else ?
-I don't know ?! Got any ideas ? Open an issue and let's talk !
+I don't know ?! Got any ideas ? Open an issue and let's talk !  
 Please feel free to contribute in any way, be it documentation, blog posts, discussion or code - this is open source !
