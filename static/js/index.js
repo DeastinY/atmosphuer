@@ -12,7 +12,7 @@ $(document).ready(function() {
             contentType : 'application/json',
             dataType : 'json',
             data : JSON.stringify({
-                "name" : $(this).attr('name'),
+                "id" : $(this).attr('id'),
                 "on" : state
             })
         });

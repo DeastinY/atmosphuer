@@ -7,97 +7,53 @@
 {% block content %}
 <div class="container">
     <div class="jumbotron">
-        <div id="feedback" class="alert alert-info" role="alert">{{ message }}</div>
-        <!-- bootstrap-switch.org -->
-            <div class="row">
-                <div class="col-xs-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h3>
-                                {{ lights[0].name }}
-                            </h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <input name={{ lights[0].name }} class="BSSwitch" type="checkbox" size="large" {% if lights[0].on %}checked{% endif %}>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h3>
-                                {{ lights[1].name }}
-                            </h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <input name={{ lights[1].name }} class="BSSwitch" type="checkbox" size="large" {% if lights[1].on %}checked{% endif %}>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <h3>
-                                {{ lights[2].name }}
-                            </h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <input name={{ lights[2].name }} class="BSSwitch" type="checkbox" size="large" {% if lights[2].on %}checked{% endif %}>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    <div class="container-fluid">
         <div class="row">
-            <div class="row">
-                <form role="form" method="post" action="youtubedl">
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <input type="text" class="form-control" id="url" name="url" placeholder="Youtube-URL">
-                        </div>
-                        <div class="col-xs-4">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="submit" class="btn btn-default" style="display: block; width: 100%;">Download
-                            </button>
-                        </div>
+            {% for l in lights %}
+            <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3>
+                            {{ l[0] }}
+                        </h3>
                     </div>
-                </form>
+                    <div class="panel-body text-center">
+                        <input id="{{l[1]}}" class="BSSwitch" type="checkbox" size="large" {% if l[2] %}checked{% endif %}>
+                    </div>
+                </div>
             </div>
+        {% endfor %}
         </div>
         <div class="row">
-            <div class="col-xs-6">
-                <!-- List Scenes -->
-                <div class="list-group" style="overflow-y: scroll; max-height: 400px">
-                        {% for item in scenes %}
-                                <a href="#"
-                                   data-name="{{ item.name }}"
-                                   data-hue="{{ item.hue }}"
-                                   data-brightness="{{ item.brightness }}"
-                                   data-saturation="{{ item.saturation }}"
-                                   data-hits="{{ item.hits }}"
-                                   class="list-group-item sselector">
-                                    <h2>{{ item.name }} <span class="badge" id="{{ item.name }}">{{ item.hits }}</span>  <small>Hue: {{ item.hue }} Brightness: {{ item.brightness }} Saturation: {{ item.saturation }}</small></h2>
-                                </a>
-                        {% endfor %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <!-- List Scenes -->
+                        <div class="list-group" style="overflow-y: scroll; max-height: 400px">
+                                {% for item in scenes %}
+                                        <a href="#"
+                                           data-name="{{ item.name }}"
+                                           data-hits="{{ item.hits }}"
+                                           class="list-group-item sselector">
+                                            <h2>{{ item.name }}</h2>
+                                        </a>
+                                {% endfor %}
+                            </div>
                     </div>
-            </div>
-            <div class="col-xs-6">
-                <!-- List Sounds -->
-                <div class="list-group" style="overflow-y: scroll; max-height: 400px">
-                        {% for item in sounds %}
-                            <a href="#" class="list-group-item aselector" data-source="{{url_for('static', filename='sounds/'+item)}}">
-                                <audio preload="none" loop="loop" id = {{ item }}>
-                                </audio>
-                            <h2>{{ item }}</h2>
-                            </a>
-                        {% endfor %}
+                    <div class="col-xs-6">
+                        <!-- List Sounds -->
+                        <div class="list-group" style="overflow-y: scroll; max-height: 400px">
+                                {% for item in sounds %}
+                                    <a href="#" class="list-group-item aselector" data-source="{{url_for('static', filename='sounds/'+item)}}">
+                                        <audio preload="none" loop="loop" id = {{ item }}>
+                                        </audio>
+                                    <h2>{{ item }}</h2>
+                                    </a>
+                                {% endfor %}
+                            </div>
                     </div>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 {% endblock %}
